@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jerome L. Moreno — IT Professional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #1a1a18;
+      --ink-2: #4a4a46;
+      --ink-3: #8a8a84;
+      --line: #e4e4de;
+      --bg: #fafaf7;
+      --bg-2: #f2f2ec;
+      --accent: #2a5caa;
+      --accent-light: #e8eef8;
+      --mono: 'DM Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250,250,247,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink-2);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--ink-2);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 2rem 4rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-inner {
+      width: 100%;
+    }
+
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    h1 strong {
+      font-weight: 500;
+      display: block;
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      color: var(--ink-2);
+      font-size: 16px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--ink);
+      color: var(--bg);
+    }
+    .btn-primary:hover { background: #2d2d28; }
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .btn-outline:hover { border-color: var(--ink-3); background: var(--bg-2); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.75rem;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 3rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--line);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+    .exp-item {
+      display: grid;
+      grid-template-columns: 1fr 140px;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .exp-item.visible { opacity: 1; transform: none; }
+    .exp-item:first-child { border-top: 1px solid var(--line); }
+
+    .exp-role {
+      font-weight: 500;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    .exp-company {
+      font-size: 13px;
+      color: var(--accent);
+      font-family: var(--mono);
+      margin-bottom: 4px;
+    }
+    .exp-location {
+      font-size: 12px;
+      color: var(--ink-3);
+      margin-bottom: 1rem;
+    }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      text-align: right;
+      padding-top: 3px;
+      letter-spacing: 0.04em;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .exp-bullets li {
+      font-size: 14px;
+      color: var(--ink-2);
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--line);
+      font-size: 12px;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .skill-block {
+      background: var(--bg);
+      padding: 1.5rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .skill-block.visible { opacity: 1; transform: none; }
+
+    .skill-block-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ink-2);
+      background: var(--bg-2);
+      padding: 3px 10px;
+      border-radius: 3px;
+    }
+
+    /* ─── CERTIFICATIONS ─── */
+    .certs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .cert-item {
+      display: grid;
+      grid-template-columns: 1fr 100px;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .cert-item.visible { opacity: 1; transform: none; }
+    .cert-item:first-child { border-top: 1px solid var(--line); }
+
+    .cert-name {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink);
+    }
+    .cert-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      text-align: right;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact {
+      background: var(--bg-2);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      max-width: 100%;
+      padding: 5rem 2rem;
+    }
+    .contact-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-item a, .contact-item span {
+      font-size: 14px;
+      color: var(--ink-2);
+      text-decoration: none;
+    }
+    .contact-item a:hover { color: var(--accent); }
+    .contact-item-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin-bottom: 4px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--ink-3);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─── MOBILE ─── */
+    .hamburger { display: none; }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; background: none; border: none; cursor: pointer; font-size: 20px; color: var(--ink); }
+
+      h1 { font-size: 2.5rem; }
+
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-date { text-align: left; }
+
+      .cert-item { grid-template-columns: 1fr; gap: 2px; }
+      .cert-date { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#hero" class="nav-logo">jlm<span>.</span>dev</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certifications">Certifications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="ham" aria-label="Menu">☰</button>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">IT Professional &amp; Security Enthusiast</div>
+      <h1>Jerome<br><strong>L. Moreno</strong></h1>
+      <p class="hero-desc">
+        IT intern with hands-on experience in endpoint management, IT service operations, and system administration. Pursuing a career in cybersecurity and IT infrastructure.
+      </p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn btn-primary">View Experience</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Work History</div>
+    <h2>Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">IT Operations Intern</div>
+          <div class="exp-company">Concentrix PH</div>
+          <div class="exp-location">2F Worldwide Corporate Center, Shaw Blvd, Mandaluyong City</div>
+          <ul class="exp-bullets">
+            <li>Performed system reimaging, OS installation, application deployment, and post-deployment validation across multiple endpoints.</li>
+            <li>Provided hardware, software, network, and peripheral troubleshooting to resolve end-user technical issues.</li>
+            <li>Supported endpoint management using BigFix, including deployment, maintenance, hostname updates, and system cleanup.</li>
+            <li>Managed IT service tickets using BMC Helix ITSM, handling incident tracking, resolution, and documentation.</li>
+            <li>Assisted in system deployment, hardware upgrades (RAM/SSD), peripheral replacements, and end-user device readiness.</li>
+            <li>Performed IT asset lifecycle management including tracking, inventory, replacement, return, and disposal.</li>
+            <li>Conducted system administration tasks such as Active Directory updates, profile deletion, and configuration changes.</li>
+          </ul>
+        </div>
+        <div class="exp-date">Mar. 2026 — Apr. 2026</div>
+      </div>
+
+      <div class="exp-item">
+        <div>
+          <div class="exp-role">Information System Security Intern</div>
+          <div class="exp-company">Social Security System</div>
+          <div class="exp-location">SSS Main Building, East Avenue, Diliman, Quezon City</div>
+          <ul class="exp-bullets">
+            <li>Utilized ITSM tools to perform ticketing and manage Service Requests; tracked and updated ticket status and remarks in a spreadsheet.</li>
+            <li>Performed ETL processes on data files.</li>
+            <li>Organized and routed documents to appropriate departments for review and approval.</li>
+          </ul>
+        </div>
+        <div class="exp-date">Oct. 2025 — Dec. 2025</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Technical Stack</div>
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-block-label">Programming &amp; Web</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Systems &amp; Tools</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux</span>
+          <span class="skill-tag">BMC Helix ITSM</span>
+          <span class="skill-tag">BigFix</span>
+          <span class="skill-tag">Active Directory</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Productivity</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Google Workspace</span>
+          <span class="skill-tag">Microsoft Office</span>
+          <span class="skill-tag">Tableau</span>
+        </div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">IT Operations</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Endpoint Mgmt</span>
+          <span class="skill-tag">Incident Tracking</span>
+          <span class="skill-tag">Asset Lifecycle</span>
+          <span class="skill-tag">OS Deployment</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-label">Credentials</div>
+    <h2>Certifications</h2>
+    <div class="certs-list">
+      <div class="cert-item">
+        <div class="cert-name">Google Data Analytics Professional Certificate (v.3)</div>
+        <div class="cert-date">Feb. 24, 2026</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">Foundation of Cybersecurity</div>
+        <div class="cert-date">Feb. 27, 2026</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">Play It Safe: Manage Security Risks</div>
+        <div class="cert-date">Mar. 02, 2026</div>
+      </div>
+      <div class="cert-item">
+        <div class="cert-name">Connect and Protect: Networks and Network Security</div>
+        <div class="cert-date">Mar. 08, 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <div id="contact">
+    <div class="contact-inner">
+      <div class="section-label">Get in touch</div>
+      <h2 style="margin-bottom: 0;">Let's connect.</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <div class="contact-item-label">Email</div>
+          <a href="mailto:jlmoreno021@gmail.com">jlmoreno021@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Mobile</div>
+          <span>+63 924 458 5404</span>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">LinkedIn</div>
+          <a href="https://linkedin.com/in/morenojerome" target="_blank" rel="noopener">linkedin.com/in/morenojerome</a>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-label">Location</div>
+          <span>San Mateo, Rizal, PH</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2026 Jerome L. Moreno — Built with GitHub Pages
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.exp-item, .skill-block, .cert-item');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Mobile nav toggle
+    const ham = document.getElementById('ham');
+    const navLinks = document.querySelector('.nav-links');
+    ham.addEventListener('click', () => {
+      const open = navLinks.style.display === 'flex';
+      navLinks.style.display = open ? 'none' : 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '56px';
+      navLinks.style.right = '0';
+      navLinks.style.left = '0';
+      navLinks.style.background = 'rgba(250,250,247,0.97)';
+      navLinks.style.padding = '1rem 2rem';
+      navLinks.style.borderBottom = '1px solid #e4e4de';
+      if (open) navLinks.style.display = 'none';
+    });
+
+    // Smooth active nav highlight
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navAnchors = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 100) current = sec.id;
+      });
+      navAnchors.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? '#1a1a18' : '';
+      });
+    });
+  </script>
+</body>
+</html>
