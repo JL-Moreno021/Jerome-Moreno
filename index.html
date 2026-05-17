@@ -450,6 +450,18 @@
       color: var(--ink-3);
       letter-spacing: 0.04em;
     }
+    .project-link {
+      display: inline-block;
+      margin-top: 1rem;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      transition: opacity 0.2s;
+    }
+    .project-link:hover { opacity: 0.7; }
+
     .stack-tag:not(:last-child)::after {
       content: '·';
       margin-left: 6px;
@@ -627,7 +639,7 @@
         <div class="project-header">
           <div>
             <div class="project-title">SmartBeat</div>
-            <div class="project-type">IoT System</div>
+            <div class="project-type">IoT System · Capstone Project</div>
           </div>
           <div class="project-icon">📡</div>
         </div>
@@ -649,6 +661,7 @@
           <span class="stack-tag">FreeRTOS</span>
           <span class="stack-tag">IoT</span>
         </div>
+        <a href="https://github.com/JL-Moreno021/SmartBeat/tree/main" target="_blank" rel="noopener" class="project-link">View on GitHub →</a>
       </div>
 
       <div class="project-card">
